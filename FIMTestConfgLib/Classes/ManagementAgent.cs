@@ -15,7 +15,7 @@ namespace FIMTestConfigurator {
         //_______________________________________________________________________________________________________________________
         public override string AdditionalInfo() {
             AdditionalLinkedInfo.Clear();
-            string sMenu = (Source == null ? " (set)" : " (remove)"), sMenuLnk = (Source == null ? $"#set:{Link}:source" : $"#remove:{Link}:{Source.Link}");
+            string sMenu = (Source == null ? " (set)" : " (remove)"), sMenuLnk = (Source == null ? $"{TestObjectBase.SetActionLinkHeader}{Link}:source" : $"{TestObjectBase.RemoveActionLinkHeader}{Link}:{Source.Link}");
             string additionalInfo = AddInfoItem("Source", Source?.Name, true, sMenu: sMenu);
             AddLinkInfoItem(additionalInfo, Source, sMenu: sMenu, sMenuLnk: sMenuLnk);
             return additionalInfo;

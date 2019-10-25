@@ -18,11 +18,11 @@ namespace FIMTestConfigurator {
         //_______________________________________________________________________________________________________________________
         public override string AdditionalInfo() {
             AdditionalLinkedInfo.Clear();
-            string sMenu = " (add)", sMenuLnk = $"#add:{Link}:test";
+            string sMenu = " (add)", sMenuLnk = $"{TestObjectBase.AddActionLinkHeader}{Link}:test";
             string additionalInfo = AddInfoItem("Total tests", Tests.Count.ToString(), sMenu: sMenu);
             AddLinkInfoItem(additionalInfo, null, sMenu: sMenu, sMenuLnk: sMenuLnk);
             foreach (Test t in Tests) {
-                sMenu = " (remove)"; sMenuLnk = $"#remove:{Link}:{t.Link}";
+                sMenu = " (remove)"; sMenuLnk = $"{TestObjectBase.RemoveActionLinkHeader}{Link}:{t.Link}";
                 additionalInfo += AddInfoItem("Test", t.Name, false, true, sMenu: sMenu);
                 AddLinkInfoItem(additionalInfo, t, sMenu: sMenu, sMenuLnk: sMenuLnk);
                 }

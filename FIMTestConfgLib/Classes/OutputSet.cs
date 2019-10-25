@@ -61,7 +61,7 @@ namespace FIMTestConfigurator {
             AdditionalLinkedInfo.Clear();
             Enum.TryParse(Type, out AllowedTypes curtype);
 
-            string sMenu = (DestinationManagementAgent == null ? " (set)" : " (remove)"), sMenuLnk = (DestinationManagementAgent == null ? $"#set:{Link}:managementagent" : $"#remove:{Link}:{DestinationManagementAgent.Link}");
+            string sMenu = (DestinationManagementAgent == null ? " (set)" : " (remove)"), sMenuLnk = (DestinationManagementAgent == null ? $"{TestObjectBase.SetActionLinkHeader}{Link}:managementagent" : $"{TestObjectBase.RemoveActionLinkHeader}{Link}:{DestinationManagementAgent.Link}");
             // Si el MA no es necesario quita la opción de establecerlo
             if (DestinationManagementAgent == null && !MARequired) { sMenu = sMenuLnk = ""; }
 

@@ -78,10 +78,14 @@ namespace FIMTestConfigurator {
                 }
             }
         //_______________________________________________________________________________________________________________________
-        public static bool IsActionLink( string sLink ) { return sLink.iStartsWith("#"); }
-        public static bool IsRemoveActionLink( string sLink ) { return sLink.iStartsWith("#remove:"); }
-        public static bool IsAddActionLink( string sLink ) { return sLink.iStartsWith("#add:"); }
-        public static bool IsSetActionLink( string sLink ) { return sLink.iStartsWith("#set:"); }
+        public static string ActionLinkHeader = "%";
+        public static string RemoveActionLinkHeader = "%remove:";
+        public static string AddActionLinkHeader = "%add:";
+        public static string SetActionLinkHeader = "%set:";
+        public static bool IsActionLink( string sLink ) { return sLink.iStartsWith(ActionLinkHeader); }
+        public static bool IsRemoveActionLink( string sLink ) { return sLink.iStartsWith(RemoveActionLinkHeader); }
+        public static bool IsAddActionLink( string sLink ) { return sLink.iStartsWith(AddActionLinkHeader); }
+        public static bool IsSetActionLink( string sLink ) { return sLink.iStartsWith(SetActionLinkHeader); }
         //_______________________________________________________________________________________________________________________
         internal string AddInfoItem(string sName, string sValue, bool Header = false, bool SubItem = false, string sMenu = "") {
             return (Header ? "Additional Info:\n" : "") + new string(' ',10)  + (SubItem ? "- " : "") + sName + ": " + sValue + sMenu + "\n";//(SubItem ? " (remove)" :(string.IsNullOrEmpty(sValue)?" (set)": " (add)")) + 

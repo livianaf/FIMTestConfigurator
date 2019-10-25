@@ -23,23 +23,23 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bClose = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cDgVars = new System.Windows.Forms.DataGridView();
-            this.cDgEnv = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lStBar = new System.Windows.Forms.ToolStripStatusLabel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cDgEnv = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cDgVars = new System.Windows.Forms.DataGridView();
+            this.lError = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cDgVars)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cDgEnv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cDgVars)).BeginInit();
             this.SuspendLayout();
             // 
             // bClose
@@ -56,12 +56,20 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lStBar});
+            this.lStBar,
+            this.lError});
             this.statusStrip1.Location = new System.Drawing.Point(0, 539);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.ShowItemToolTips = true;
             this.statusStrip1.Size = new System.Drawing.Size(884, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lStBar
+            // 
+            this.lStBar.Name = "lStBar";
+            this.lStBar.Size = new System.Drawing.Size(13, 17);
+            this.lStBar.Text = "  ";
             // 
             // splitContainer1
             // 
@@ -87,32 +95,15 @@
             this.splitContainer1.SplitterDistance = 257;
             this.splitContainer1.TabIndex = 0;
             // 
-            // cDgVars
+            // label1
             // 
-            this.cDgVars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cDgVars.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.cDgVars.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cDgVars.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.cDgVars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cDgVars.Location = new System.Drawing.Point(0, 27);
-            this.cDgVars.MultiSelect = false;
-            this.cDgVars.Name = "cDgVars";
-            this.cDgVars.Size = new System.Drawing.Size(882, 249);
-            this.cDgVars.TabIndex = 0;
-            this.cDgVars.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.CDgVars_CellFormatting);
-            this.cDgVars.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.CDgVars_CellValidating);
-            this.cDgVars.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.CDgVars_CellValueChanged);
-            this.cDgVars.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.CDgVars_EditingControlShowing);
-            this.cDgVars.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.CDgVars_UserDeletingRow);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
+            this.label1.Location = new System.Drawing.Point(3, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 16);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Locations:";
             // 
             // cDgEnv
             // 
@@ -139,16 +130,6 @@
             this.cDgEnv.SelectionChanged += new System.EventHandler(this.CDgEnv_SelectionChanged);
             this.cDgEnv.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.CDgEnv_UserDeletingRow);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
-            this.label1.Location = new System.Drawing.Point(3, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 16);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Locations:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -158,11 +139,33 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Variables:";
             // 
-            // lStBar
+            // cDgVars
             // 
-            this.lStBar.Name = "lStBar";
-            this.lStBar.Size = new System.Drawing.Size(13, 17);
-            this.lStBar.Text = "  ";
+            this.cDgVars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cDgVars.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.cDgVars.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cDgVars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cDgVars.Location = new System.Drawing.Point(0, 27);
+            this.cDgVars.MultiSelect = false;
+            this.cDgVars.Name = "cDgVars";
+            this.cDgVars.Size = new System.Drawing.Size(882, 249);
+            this.cDgVars.TabIndex = 0;
+            this.cDgVars.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.CDgVars_CellFormatting);
+            this.cDgVars.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.CDgVars_CellValidating);
+            this.cDgVars.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.CDgVars_CellValueChanged);
+            this.cDgVars.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.CDgVars_EditingControlShowing);
+            this.cDgVars.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.CDgVars_UserDeletingRow);
+            // 
+            // lError
+            // 
+            this.lError.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lError.ForeColor = System.Drawing.Color.Red;
+            this.lError.Name = "lError";
+            this.lError.Size = new System.Drawing.Size(35, 17);
+            this.lError.Text = "Error";
+            this.lError.Visible = false;
             // 
             // frmVariables
             // 
@@ -185,8 +188,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cDgVars)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cDgEnv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cDgVars)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +204,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView cDgVars;
         private System.Windows.Forms.ToolStripStatusLabel lStBar;
+        private System.Windows.Forms.ToolStripStatusLabel lError;
         }
     }

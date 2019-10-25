@@ -67,6 +67,7 @@ namespace FIMTestConfigurator {
                 }
             if (e.ColumnIndex == 1) TestsHelper.saveLocation((long)cDgEnv.Rows[e.RowIndex].Cells[0].Value, cDgEnv.Rows[e.RowIndex].Cells[1].Value.ToString());
             else if (e.ColumnIndex == 2) TestsHelper.saveLocationDetail(TestsHelper.getLocationByID((long)cDgEnv.Rows[e.RowIndex].Cells[0].Value), cDgEnv.Rows[e.RowIndex].Cells[2].Value.ToString());
+            ShowLasError();
             }
         //_______________________________________________________________________________________________________________________
         private void CDgVars_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
@@ -98,7 +99,14 @@ namespace FIMTestConfigurator {
                 TestsHelper.saveLocationVariable(loc, TestsHelper.getVariableByID((long)cDgVars.Rows[e.RowIndex].Cells[0].Value));
                 TestsHelper.setLocationVariableValue(loc, (long)cDgVars.Rows[e.RowIndex].Cells[0].Value, cDgVars.Rows[e.RowIndex].Cells[2].Value.ToString());
                 }
-            else if (e.ColumnIndex == 3) TestsHelper.saveVariableDetail(TestsHelper.getVariableByID((long)cDgVars.Rows[e.RowIndex].Cells[0].Value), cDgVars.Rows[e.RowIndex].Cells[2].Value.ToString());
+            else if (e.ColumnIndex == 3) TestsHelper.saveVariableDetail(TestsHelper.getVariableByID((long)cDgVars.Rows[e.RowIndex].Cells[0].Value), cDgVars.Rows[e.RowIndex].Cells[3].Value.ToString());
+            ShowLasError();
+            }
+        //_______________________________________________________________________________________________________________________
+        private void ShowLasError() {
+            string msg = TestsHelper.LastErrorMessages;
+            lError.ToolTipText = msg;
+            lError.Visible = !string.IsNullOrWhiteSpace(msg);
             }
         //_______________________________________________________________________________________________________________________
         private void CDgVars_CellValidating(object sender, DataGridViewCellValidatingEventArgs e) {
