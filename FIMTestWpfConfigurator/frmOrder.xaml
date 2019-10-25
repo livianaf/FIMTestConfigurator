@@ -1,0 +1,45 @@
+﻿<Window x:Class="FIMTestWpfConfigurator.frmOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FIMTestWpfConfigurator"
+        mc:Ignorable="d"
+        Title="frmOrder" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterOwner" Background="Transparent">
+    <Grid Name="cPanelRecent" Visibility="Visible" Margin="20"  Background="#F3F2F1">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+        </Grid.Effect>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Name="RecentHeader" Grid.Row="0" MouseDown="CaptionBar_MouseDown" >
+            <Image Source="images\newOrderB.png" HorizontalAlignment="Left" Width="35" Height="35" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Text="Order Content" VerticalAlignment="Center" FontSize="16"/>
+        </DockPanel>
+        <ListView Name="cLst" Grid.Row="1" TextElement.FontSize="16" HorizontalContentAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="50"  />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+            <Button Name="bSave" Margin="10" Height="30" Width="100" IsDefault="True" Click="BSave_Click">Save and Close</Button>
+            <Button Name="bCancel" Margin="10" Height="30" Width="100" Click="BCancel_Click">Cancel</Button>
+            <Button Name="bUp" Margin="20" Height="30" Width="100" Click="BUp_Click">Up</Button>
+            <Button Name="bDown" Margin="10" Height="30" Width="100" Click="BDown_Click">Down</Button>
+        </StackPanel>
+    </Grid>
+</Window>

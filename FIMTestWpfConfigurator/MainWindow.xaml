@@ -1,0 +1,216 @@
+﻿<Window x:Class="FIMTestWpfConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="710" Width="1200" MinHeight="710" MinWidth="1200" WindowState="Maximized" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip">
+    <Window.Resources>
+        <ContextMenu x:Key="ctxMenu">
+            <MenuItem Name="mCtxAdd" Header="Add New" Click="mCtxAdd_Click" />
+            <MenuItem Name="mCtxDuplicate" Header="Duplicate" Click="mCtxDuplicate_Click"/>
+            <MenuItem Name="mCtxHide" Header="Hide" Click="mCtxHide_Click"/>
+            <Separator Name="mCtxSep" />
+            <MenuItem Name="mCtxDelete" Header="Delete" Click="mCtxDelete_Click"/>
+            <Separator Name="mCtxSep2" />
+            <MenuItem Name="mCtxReorder" Header="Delete" Click="mCtxReorder_Click"/>
+        </ContextMenu>
+        <ContextMenu x:Key="ctxMenuTools">
+            <MenuItem Name="mCtxRunTest" Header="Run Tests Tool" Click="mCtxRunTool_Click" Tag="FIMTestRunnerApp"/>
+            <MenuItem Name="mCtxDivFIMTest" Header="Divisional FIM Sync Tool" Click="mCtxRunTool_Click" Tag="FIMSyncDivApp"/>
+            <MenuItem Name="mCtxNatFIMTest" Header="National FIM Sync Tool" Click="mCtxRunTool_Click" Tag="FIMSyncNatApp"/>
+            <MenuItem Name="mCtxFIMCfgFiles" Header="FIM Config Files" Click="mCtxRunTool_Click" Tag="FIMConfigFiles"/>
+        </ContextMenu>
+        <Style x:Key="closeBtn">
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="controlBtn">
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Background" Value="#3D3E67"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel LastChildFill="True" Background="#F3F2F1">
+
+        <DockPanel x:Name="TitleBar" VerticalAlignment="Top" Height="35"  DockPanel.Dock="Top" Background="#464775">
+
+            <DockPanel DockPanel.Dock="Right" MouseUp="bClose_Click" Width="35" Style="{StaticResource closeBtn}" >
+                <Image Source="images\newClose.png" Width="20" Height="20" DockPanel.Dock="Top" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <!--TextBlock Padding="15,15,15,5"  Background="Transparent" FontFamily="Segoe MDL2 Assets" FontSize="10"  HorizontalAlignment="Left" Foreground="White">&#xE106;</TextBlock-->
+            </DockPanel>
+            <DockPanel Width="35" DockPanel.Dock="Right" MouseUp="bMaximize_Click"  Style="{StaticResource controlBtn}"  >
+                <Image Name="bMax" Source="images\newRestore.png" Width="20" Height="20" DockPanel.Dock="Top" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality">
+                </Image>
+                <!--TextBlock Padding="15,15,15,5"  Background="Transparent" FontFamily="Segoe MDL2 Assets" FontSize="10"  HorizontalAlignment="Left" Foreground="White">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="&#xE739;" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                                    <Setter Property="Text" Value="&#xE923;" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock-->
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Right" Width="35" MouseUp="bMinimize_Click"  Style="{StaticResource controlBtn}"  >
+                <Image Source="images\newMin.png" Width="20" Height="20" DockPanel.Dock="Top" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality" />
+                <!--TextBlock Padding="15,15,15,5"  Background="Transparent" FontFamily="Segoe MDL2 Assets" FontSize="10"  HorizontalAlignment="Left" Foreground="White">&#xE949;</TextBlock-->
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Left" Width="15"/>
+            <TextBlock Name="cWinTitle" Padding="20" MouseDown="CaptionBar_MouseDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="White" FontWeight="Bold">FIM Test Configurator</TextBlock>
+            <TextBlock Name ="bError" Padding="20" Foreground="Red" FontWeight="Bold" ToolTip="" Visibility="Collapsed"  VerticalAlignment="Center" >  Last Error  </TextBlock>
+            <TextBlock Name="cWinTitleDB" Padding="20" MouseDown="CaptionBar_MouseDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="White"/>
+        </DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DockPanel Name="cLeftPanel" Tag="" Background="#303146" DockPanel.Dock="Left" Grid.Column="0" LastChildFill="False" >
+                <DockPanel Name="bAll" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top"  Width="55"  Style="{StaticResource controlBtn}">
+                    <Image Source="images\newall.png" RenderOptions.BitmapScalingMode="HighQuality" Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">All</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bBatches" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top"  Width="55" Style="{StaticResource controlBtn}" >
+                    <Image Source="images\newbatches.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Batches</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bGroups" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top"  Width="55" Style="{StaticResource controlBtn}" >
+                    <Image Source="images\newgroups.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Groups</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bTests" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top"   Width="55" Style="{StaticResource controlBtn}" >
+                    <Image Source="images\newtests.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Tests</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bConfigs" Tag="" RenderOptions.BitmapScalingMode="HighQuality"  MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top"  Width="55"  Style="{StaticResource controlBtn}">
+                    <Image Source="images\newconfigs.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Configs</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bMAs" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top" Style="{StaticResource controlBtn}" Width="55"  >
+                    <Image Source="images\newMAs.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">MAs</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bSources" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top" Style="{StaticResource controlBtn}" Width="55"  >
+                    <Image Source="images\newsources.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Sources</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bInputSets" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top" Style="{StaticResource controlBtn}"  Width="55" >
+                    <Image Source="images\newinputsets.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">InputSets</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bOutputSets" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top" Style="{StaticResource controlBtn}"  Width="55" >
+                    <Image Source="images\newoutputsets.png"  RenderOptions.BitmapScalingMode="HighQuality"  Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">OutputSets</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bScripts" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top" Style="{StaticResource controlBtn}" Width="55"  >
+                    <Image Source="images\newscripts.png"  RenderOptions.BitmapScalingMode="HighQuality" Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Scripts</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bShowHide" Tag="" MouseDown="LeftPanel_MouseDown" DockPanel.Dock="Top" Style="{StaticResource controlBtn}" Width="55"  >
+                    <Image Source="images\newshowhide.png"  RenderOptions.BitmapScalingMode="HighQuality" Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Show/Hide</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bTools" Tag="" DockPanel.Dock="Bottom" Style="{StaticResource controlBtn}" Width="55" MouseUp="bTools_MouseUp" >
+                    <Image Source="images\newTools.png"  RenderOptions.BitmapScalingMode="HighQuality" Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Tools</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bCheckIntegrity" Tag="" DockPanel.Dock="Bottom" Style="{StaticResource controlBtn}" Width="55" MouseUp="bCheckIntegrity_MouseUp" >
+                    <Image Source="images\newValidate.png"  RenderOptions.BitmapScalingMode="HighQuality" Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Check Tests</TextBlock>
+                </DockPanel>
+                <DockPanel Name="bOpenDB" Tag="" DockPanel.Dock="Bottom" Style="{StaticResource controlBtn}" Width="55" MouseUp="bOpenDB_MouseUp" >
+                    <Image Source="images\newOpen.png"  RenderOptions.BitmapScalingMode="HighQuality" Width="35" Height="35" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+                    <TextBlock Padding="0,0,0,10"  Background="Transparent" FontSize="10"  HorizontalAlignment="Center" Foreground="White">Open</TextBlock>
+                </DockPanel>
+            </DockPanel>
+            <TreeView Name="cTv" Background="Transparent" Grid.Column="1" AllowDrop="True" MouseDown="cTv_MouseDown" MouseMove="cTv_MouseMove" DragOver="cTv_DragOver" Drop="cTv_Drop"/>
+            <GridSplitter Grid.Column="3" Width="5" HorizontalAlignment="Stretch" />
+            <Grid Name="cPanelEdit" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Name="bSave" Content="Save Changes" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Width="90" Margin="2,6,6,0" Click="bSave_Click"/>
+                <Button Name="bDetail" Content=">>" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" Width="20" Margin="2,3,6,6" Click="bDetail_Click"/>
+                <TextBlock Name="lName" Padding="5,5" Grid.Column="0" Grid.Row="1" Text="Name:"/>
+                <TextBox Name="cName" Padding="5,0,5,5" Grid.Column="1" Grid.Row="1" Text="nombre" Margin="0,3,30,5" TextChanged="EditItem_Changed"/>
+                <TextBlock Name="lDetail" Padding="5,5" Grid.Column="0" Grid.Row="2" Text="Config:"/>
+                <TextBox Name="cServer" Padding="5,0,5,5" Grid.Column="1" Grid.Row="2" Text="nombre" Margin="1,3,30,5" TextChanged="EditItem_Changed"/>
+
+                <TextBox Name="cDetail" Padding="5,0,5,5" Grid.Column="1" Grid.Row="2" Text="nombre" Margin="1,3,30,5" TextChanged="EditItem_Changed"/>
+                <CheckBox Name="cDelta" IsChecked="True" Grid.Column="1" Grid.Row="2" Content="Delta Sync" Margin="3,3" Unchecked="Check_Checked" Checked="Check_Checked"/>
+                <CheckBox Name="cCommit" IsChecked="True" Grid.Column="1" Grid.Row="2" Content="Commit Changes" Margin="100,3" Unchecked="Check_Checked" Checked="Check_Checked"/>
+                <ComboBox Name="cbDetail" Grid.Column="1" Grid.Row="2" Margin="1,3,30,5" SelectionChanged="cbDetail_SelectionChanged"/>
+
+                <TextBlock Name="lDesc" Padding="5,5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Text="Additional Info:" />
+                <TextBlock Name="lUser" Padding="5,5" Grid.Column="0" Grid.Row="3" Text="User:"/>
+                <TextBox Name="cUser" Padding="5,0,5,5" Grid.Column="1" Grid.Row="3" Text="nombre" Margin="0,3,30,5" TextChanged="EditItem_Changed"/>
+                <TextBlock Name="lPassword" Padding="5,5" Grid.Column="0" Grid.Row="4" Text="Password:"/>
+                <PasswordBox Name="cPassword" Padding="5,0,5,5" Grid.Column="1" Grid.Row="4" PasswordChar="*" Margin="0,3,30,5" PasswordChanged="cPassword_PasswordChanged" />
+                <TextBlock Name="lAuthType"  Padding="5,5" Grid.Column="0" Grid.Row="5" Text="Auth Type:"/>
+                <TextBox Name="cAuthType"  Padding="5,0,5,5" Grid.Column="1" Grid.Row="5" Text="nombre" Margin="0,3,30,5" TextChanged="EditItem_Changed"/>
+                <TextBlock Name="lBack" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Padding="5,5" Visibility="Hidden"/>
+            </Grid>
+            <Grid Name="cPanelEditText" Grid.Column="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Name="bSaveItem" Content="Save" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Width="90" Margin="2,6,6,0" Click="bSaveItem_Click"/>
+                <TextBox Name="cEditDetail" FontFamily="Consolas" Padding="5,0,5,5" Grid.Column="0" Grid.Row="1" Text="nombre" Margin="0,3,3,5" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TextChanged="cEditDetail_TextChanged"/>
+            </Grid>
+            <Grid Name="cPanelRecent" Grid.Column="4" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel Name="RecentHeader" Grid.Row="0">
+                    <Image Source="images\newRecentB.png" HorizontalAlignment="Left" Width="35" Height="35" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock Text="Recent" VerticalAlignment="Center" FontSize="16"/>
+                </DockPanel>
+                <ListView Name="cLstRecent" Grid.Row="1" TextElement.FontSize="16">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" Width="Auto"/>
+                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}" Width="Auto"/>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Height" Value="50" />
+                            <EventSetter Event="MouseDoubleClick" Handler="cLstRecent_MouseDoubleClick" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
