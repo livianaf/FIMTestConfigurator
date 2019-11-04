@@ -18,18 +18,22 @@ However, Microsoft defines the synchronization lifecycle which is documented, re
 
 For each step, you can define the rules (assertions/checks) that the FIM Runner tries to verify. This is what we call "Output Sets".
 
-The anatomy of a FIM Test contains the following elements:
-- **Config** (optional): this points to a configuration file just in case your solution uses one!. This way, you could mimic a different configuration for each tests.
-- **Script** (optional): this allows you to execute some PS scripting before and after the test. It is usefull to prepare things before the test, and to dispose them after it.
-- **Source MA**: The inbound management agent.
-- **Input Set**: It contains a DN (which is a reference to an identity in a directory), and a set of input values to be applied to the attributes of that object before the test.
-- **Output Sets**: It contains a set of conditions regarding the synchronization lifecycle itself. An output set responds to a synchronization event. We can do assertions for several events: filtering, projection, join, import flow, provision, deprovision, export flow, etc.
-
+A FIM Test DB file contains the following elements one or more of following elements:
+- **Batch**: this is just a grouping element and this is the higher one. A Batch contains Groups.
+- **Group**: this is a grouping element. A Group contains a sorted list of Tests.
+- **Test**: a test definition contains all required information to execute a test in FIM/MIM. The anatomy of a FIM Test contains the following elements: 
+  - **Config** (one optional): this points to a configuration file just in case your solution uses one!. This way, you could mimic a different configuration for each tests.
+  - **Script** (one optional): this allows you to execute some PS scripting before and after the test. It is usefull to prepare things before the test, and to dispose them after it.
+  - **Source MA** (one): The inbound management agent.
+    - **Source** (one): The credential required by the management agent.
+  - **Input Set** (one): It contains a DN (which is a reference to an identity in a directory), and a set of input values to be applied to the attributes of that object before the test.
+  - **Output Sets** (one or more): It contains a set of conditions regarding the synchronization lifecycle itself. An output set responds to a synchronization event. We can do assertions for several events: filtering, projection, join, import flow, provision, deprovision, export flow, etc.
+- **Variables** (optional): Variables (if defined) are used during test execution. The list of variable names is unique in each DB test file. A list of variable values is configured for a *computer name*. You can define several set of values for diferent *computer names*. The [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner) application use the set of values defined for the *computer name* where it is running.
 ## Tests, Groups and Batches
 Going straight to the point, a group contains several tests, and a batch contains several groups. This way you can structure your tests whatever you prefer and selectively run them.
 
 ## Executing tests
-As mentioned before, you need another tool, "FIMTestsRunner" in order to be able to execute the tests defined in the .db file.
+As mentioned before, you need another tool, [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner) in order to be able to execute the tests defined in the .db file.
 This tool is launched when you click on the "Run Tests" button in the upper toolbar.
 
 ## Basic operations
@@ -38,10 +42,10 @@ The menu bar contains the following commands:
 - **Show/Hide View**. This command allow to hide items in the left tree view panel and unhide items previously hidden.
 - **check Intergrity**. This command validate configuration of each item defined in the DB test file. 
 - **Edit Variables**. This command show an additional dialog window used to define variables and values used during test execution.
-- **Close DB**. This command is used to close active DB file.
+- **Close DB**. This command is used to close active DB file. 
 - **Find**. This box is used to search by text in all visible items defined in active DB file. Use CTRL+F to activate the search text box and F3 to search occurences.
-- **Run Tests**. This command open FIMTestsRunner application.
-- <**Additional External Tools**>. The last three commands are configurable. They are defined in section **appSettings** of **FIMTestConfigurator.exe.Config** file. The **key** must be ExtTool1, ExtTool2 or ExtTool3. The **value** must contains three values joined by "|" character: `<text to display>|<path to the application>|<parameters>`. If **value** is empty the command button is not shown. If **parameters** section contains **#DB#** it is replaced by active DB file. Sample:
+- **Run Tests**. This command open [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner) application.
+- <**Additional External Tools**>. The last three commands are configurable. They are defined in section **appSettings** of **FIMTestConfigurator.exe.Config** file. The **key** must be `ExtTool1`, `ExtTool2` or `ExtTool3`. The **value** must contains three values joined by "|" character: `<text to display>|<path to the application>|<parameters>`. If **value** is empty the command button is not shown. If **parameters** section contains **#DB#** it is replaced by active DB file. Sample:
 ```
     <add key="ExtTool1" value="FIM Sync Div|D:\Util\FIMSyncTool\Div\FIMSyncTest.exe|" />
     <add key="ExtTool2" value="FIM Sync Nat|D:\Util\FIMSyncTool\Nat\FIMSyncTest.exe|" />
