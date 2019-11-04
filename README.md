@@ -5,7 +5,7 @@ This tool and its description is intended only for advanced [FIM/MIM](https://en
 
 ## Introduction
 FIM is the Microsoft Identity Model Synchronization Engine, which is specifically called "Forefront Identity Manager".
-This tool allows you to define groups of **synchronization tests** to be executed with [SFAlbacete's "FIMTestsRunner"](https://github.com/sfalbacete/FIMTestsRunner). For more information about tests execution, it is highly recommended to visit [SFAlbacete's hideout](https://github.com/sfalbacete).
+This tool allows you to define groups of **synchronization tests** to be executed with [SFAlbacete](https://github.com/sfalbacete)'s [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner). For more information about tests execution, it is highly recommended to visit [SFAlbacete's hideout](https://github.com/sfalbacete).
 
 ## The concept
 We, as FIM developers, needed a tool to automate all the possible "use-cases" (mostly [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)-oriented) related to the FIM Rules Extensions created during our projects. With every new version of the Rules Extensions libraries (DLLs), we needed to make sure everything kept working as expected. In order to avoid running into problems, we decided to develop a small tool to allow us to execute some basic tests and figure out if the new libraries would work well.
