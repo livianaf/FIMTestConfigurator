@@ -2,7 +2,9 @@
 
 ## Audience
 This tool and its description is intended only for advanced [FIM/MIM](https://en.wikipedia.org/wiki/Forefront_Identity_Manager) users and developers. To understand how this works, you should be used to a specific terminology (whose explanation is outside the scope of this document).
-
+## Downloads
+* [FIMTestConfigurator](https://github.com/livianaf/FIMTestConfigurator/releases/tag/v1.0.1)
+* [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner/releases)
 ## Introduction
 FIM is the Microsoft Identity Model Synchronization Engine, which is specifically called "Forefront Identity Manager".
 This tool allows you to define groups of **synchronization tests** to be executed with [SFAlbacete](https://github.com/sfalbacete)'s [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner). For more information about tests execution, it is highly recommended to visit [SFAlbacete's hideout](https://github.com/sfalbacete).
