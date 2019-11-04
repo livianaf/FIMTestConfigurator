@@ -49,9 +49,9 @@
             this.cRunSep = new System.Windows.Forms.ToolStripSeparator();
             this.bRunTest = new System.Windows.Forms.ToolStripButton();
             this.cToolsSep = new System.Windows.Forms.ToolStripSeparator();
-            this.bOpenFIMSyncDiv = new System.Windows.Forms.ToolStripButton();
-            this.bOpenFIMSyncNat = new System.Windows.Forms.ToolStripButton();
-            this.bOpenConfigFiles = new System.Windows.Forms.ToolStripButton();
+            this.bExtTool1 = new System.Windows.Forms.ToolStripButton();
+            this.bExtTool2 = new System.Windows.Forms.ToolStripButton();
+            this.bExtTool3 = new System.Windows.Forms.ToolStripButton();
             this.cErrorSep = new System.Windows.Forms.ToolStripSeparator();
             this.bError = new System.Windows.Forms.ToolStripButton();
             this.cLstFonts = new System.Windows.Forms.ToolStripComboBox();
@@ -151,9 +151,9 @@
             this.cRunSep,
             this.bRunTest,
             this.cToolsSep,
-            this.bOpenFIMSyncDiv,
-            this.bOpenFIMSyncNat,
-            this.bOpenConfigFiles,
+            this.bExtTool1,
+            this.bExtTool2,
+            this.bExtTool3,
             this.cErrorSep,
             this.bError,
             this.cLstFonts});
@@ -261,43 +261,46 @@
             this.cToolsSep.Name = "cToolsSep";
             this.cToolsSep.Size = new System.Drawing.Size(6, 25);
             // 
-            // bOpenFIMSyncDiv
+            // bExtTool1
             // 
-            this.bOpenFIMSyncDiv.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.bOpenFIMSyncDiv.Image = ((System.Drawing.Image)(resources.GetObject("bOpenFIMSyncDiv.Image")));
-            this.bOpenFIMSyncDiv.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bOpenFIMSyncDiv.Name = "bOpenFIMSyncDiv";
-            this.bOpenFIMSyncDiv.Size = new System.Drawing.Size(79, 22);
-            this.bOpenFIMSyncDiv.Tag = "FIMSyncDivApp";
-            this.bOpenFIMSyncDiv.Text = "FIM Sync Div";
-            this.bOpenFIMSyncDiv.Click += new System.EventHandler(this.mCtxRunTool_Click);
+            this.bExtTool1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.bExtTool1.Image = ((System.Drawing.Image)(resources.GetObject("bExtTool1.Image")));
+            this.bExtTool1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bExtTool1.Name = "bExtTool1";
+            this.bExtTool1.Size = new System.Drawing.Size(56, 22);
+            this.bExtTool1.Tag = "ExtTool1";
+            this.bExtTool1.Text = "ExtTool1";
+            this.bExtTool1.Visible = false;
+            this.bExtTool1.Click += new System.EventHandler(this.mCtxRunTool_Click);
             // 
-            // bOpenFIMSyncNat
+            // bExtTool2
             // 
-            this.bOpenFIMSyncNat.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.bOpenFIMSyncNat.Image = ((System.Drawing.Image)(resources.GetObject("bOpenFIMSyncNat.Image")));
-            this.bOpenFIMSyncNat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bOpenFIMSyncNat.Name = "bOpenFIMSyncNat";
-            this.bOpenFIMSyncNat.Size = new System.Drawing.Size(81, 22);
-            this.bOpenFIMSyncNat.Tag = "FIMSyncNatApp";
-            this.bOpenFIMSyncNat.Text = "FIM Sync Nat";
-            this.bOpenFIMSyncNat.Click += new System.EventHandler(this.mCtxRunTool_Click);
+            this.bExtTool2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.bExtTool2.Image = ((System.Drawing.Image)(resources.GetObject("bExtTool2.Image")));
+            this.bExtTool2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bExtTool2.Name = "bExtTool2";
+            this.bExtTool2.Size = new System.Drawing.Size(56, 22);
+            this.bExtTool2.Tag = "ExtTool2";
+            this.bExtTool2.Text = "ExtTool2";
+            this.bExtTool2.Visible = false;
+            this.bExtTool2.Click += new System.EventHandler(this.mCtxRunTool_Click);
             // 
-            // bOpenConfigFiles
+            // bExtTool3
             // 
-            this.bOpenConfigFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.bOpenConfigFiles.Image = ((System.Drawing.Image)(resources.GetObject("bOpenConfigFiles.Image")));
-            this.bOpenConfigFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bOpenConfigFiles.Name = "bOpenConfigFiles";
-            this.bOpenConfigFiles.Size = new System.Drawing.Size(96, 22);
-            this.bOpenConfigFiles.Tag = "FIMConfigFiles";
-            this.bOpenConfigFiles.Text = "FIM Config Files";
-            this.bOpenConfigFiles.Click += new System.EventHandler(this.mCtxRunTool_Click);
+            this.bExtTool3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.bExtTool3.Image = ((System.Drawing.Image)(resources.GetObject("bExtTool3.Image")));
+            this.bExtTool3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bExtTool3.Name = "bExtTool3";
+            this.bExtTool3.Size = new System.Drawing.Size(56, 22);
+            this.bExtTool3.Tag = "ExtTool3";
+            this.bExtTool3.Text = "ExtTool3";
+            this.bExtTool3.Visible = false;
+            this.bExtTool3.Click += new System.EventHandler(this.mCtxRunTool_Click);
             // 
             // cErrorSep
             // 
             this.cErrorSep.Name = "cErrorSep";
-            this.cErrorSep.Size = new System.Drawing.Size(6, 27);
+            this.cErrorSep.Size = new System.Drawing.Size(6, 25);
             this.cErrorSep.Visible = false;
             // 
             // bError
@@ -308,7 +311,7 @@
             this.bError.Image = ((System.Drawing.Image)(resources.GetObject("bError.Image")));
             this.bError.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bError.Name = "bError";
-            this.bError.Size = new System.Drawing.Size(64, 24);
+            this.bError.Size = new System.Drawing.Size(64, 22);
             this.bError.Text = "Last Error";
             this.bError.ToolTipText = " ";
             this.bError.Visible = false;
@@ -919,15 +922,15 @@
         private System.Windows.Forms.ToolStripMenuItem mCtxHide;
         private System.Windows.Forms.ToolStripStatusLabel StBar2;
         private System.Windows.Forms.ToolStripButton bRunTest;
-        private System.Windows.Forms.ToolStripButton bOpenFIMSyncDiv;
-        private System.Windows.Forms.ToolStripButton bOpenFIMSyncNat;
+        private System.Windows.Forms.ToolStripButton bExtTool1;
+        private System.Windows.Forms.ToolStripButton bExtTool2;
         private System.Windows.Forms.Panel cPanelRecent;
         private System.Windows.Forms.ListView cLstRecent;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Label lRecent;
-        private System.Windows.Forms.ToolStripButton bOpenConfigFiles;
+        private System.Windows.Forms.ToolStripButton bExtTool3;
         private System.Windows.Forms.ToolStripButton bError;
         private System.Windows.Forms.ToolStripMenuItem mCtxReorder;
         private System.Windows.Forms.ToolStripButton bShowHide;

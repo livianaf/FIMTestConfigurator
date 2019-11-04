@@ -6,16 +6,20 @@ using System.Windows.Forms;
 namespace FIMTestConfigurator {
     public class Utilities {
         //_______________________________________________________________________________________________________________________
-        public static void LaunchApp( string CfgEntry, string SelectText, string Param = null ) {
-            string exe = ConfigurationHelper.GetSetting(CfgEntry);
+        public static void LaunchApp( string CfgEntry, string Param = null ) {
+            string sToolInfo = ConfigurationHelper.GetSetting(CfgEntry);
+            string alias = sToolInfo.Split('|')[0];
+            string exe = sToolInfo.Split('|')[1];
+            string args = sToolInfo.Split('|')[2];
             if (!File.Exists(exe)) {
-                exe = SelectFile("Select " + SelectText + " Application", "exe files (*.exe)|*.exe", Path.GetFileName(exe), checkFileExists: true);
+                exe = SelectFile($"Select {alias} Application", "exe files (*.exe)|*.exe", Path.GetFileName(exe), checkFileExists: true);
                 if (!File.Exists(exe)) return;
-                ConfigurationHelper.SetSetting(CfgEntry, exe);
+                ConfigurationHelper.SetSetting(CfgEntry, $"{alias}|{exe}|{args}");
                 }
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = exe;
-            if (!string.IsNullOrWhiteSpace(Param)) startInfo.Arguments = Param;
+            if (!string.IsNullOrWhiteSpace(args)) startInfo.Arguments = args.Replace("#DB#", Param);
+            
             Process.Start(startInfo);
             }
         //_______________________________________________________________________________________________________________________

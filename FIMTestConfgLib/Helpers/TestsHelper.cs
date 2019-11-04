@@ -789,14 +789,8 @@ Start-Script
         public static void LaunchTool(string sTool,string DBFile) {
             if (string.IsNullOrEmpty(sTool)) return;
             switch (sTool) {
-                case "FIMTestRunnerApp": Utilities.LaunchApp("FIMTestRunnerApp", "Test Editor", DBFile); break;
-                case "FIMSyncDivApp": Utilities.LaunchApp("FIMSyncDivApp", "FIM Sync Div"); break;
-                case "FIMSyncNatApp": Utilities.LaunchApp("FIMSyncNatApp", "FIM Sync Nat"); break;
-                case "FIMConfigFiles":
-                    if (string.IsNullOrWhiteSpace(ConfigurationHelper.GetSetting("FIMConfigFiles")))
-                        ConfigurationHelper.SetSetting("FIMConfigFiles", @" -multiInst -nosession ""D:\FIMSynchronization\Synchronization Service\Extensions\config*.xml""  ""D:\FIMSynchronization\Synchronization Service\Extensions\configurationsToLoad.txt""");
-                    Utilities.LaunchApp("Notepad++", "Notepad++", ConfigurationHelper.GetSetting("FIMConfigFiles"));
-                    break;
+                case "FIMTestRunnerApp": Utilities.LaunchApp(sTool, DBFile); break;
+                default: Utilities.LaunchApp(sTool); break;
                 }
             }
         #endregion

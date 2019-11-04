@@ -27,7 +27,7 @@ namespace FIMTestConfigurator {
             // el tag de lBack contiene una lista de sitios por los que ha pasado
             if (lBack.Tag == null) lBack.Tag = new List<string>();
             lBack.Links.Clear();
-
+            LoadExternalTools();
             if (Environment.GetCommandLineArgs().Length == 2) OpenDB(Environment.GetCommandLineArgs()[1]);
             else ShowRecentPanel();
 
@@ -205,7 +205,7 @@ namespace FIMTestConfigurator {
         private void bShowHide_Click(object sender, EventArgs e) {
             if (bShowHide.Text == "Show/Hide View") {
                 bShowHide.Text = "Edition View";
-                bOpenDB.Enabled = bCloseDB.Enabled = bRunTest.Enabled = bCheckIntegrity.Enabled = bEditVariables.Enabled = bOpenFIMSyncDiv.Enabled = bOpenFIMSyncNat.Enabled = bOpenConfigFiles.Enabled = lFind.Enabled = cFind.Enabled = false;
+                bOpenDB.Enabled = bCloseDB.Enabled = bRunTest.Enabled = bCheckIntegrity.Enabled = bEditVariables.Enabled = bExtTool1.Enabled = bExtTool2.Enabled = bExtTool3.Enabled = lFind.Enabled = cFind.Enabled = false;
                 ResetEditionPanel(true);
                 cTv.CheckBoxes = true;
                 cTv.Enabled = false;
@@ -215,7 +215,7 @@ namespace FIMTestConfigurator {
             else {
                 ModifyNodeByLink(cTv.Nodes, (n) => { if (n.Parent == null) return false; if (n.Checked) TestsHelper.deleteHiddenItem(n.Tag); else TestsHelper.saveHiddenItem(n.Tag); return false; });
                 bShowHide.Text = "Show/Hide View";
-                bOpenDB.Enabled = bCloseDB.Enabled = bRunTest.Enabled = bCheckIntegrity.Enabled = bEditVariables.Enabled = bOpenFIMSyncDiv.Enabled = bOpenFIMSyncNat.Enabled = bOpenConfigFiles.Enabled = lFind.Enabled = cFind.Enabled = true;
+                bOpenDB.Enabled = bCloseDB.Enabled = bRunTest.Enabled = bCheckIntegrity.Enabled = bEditVariables.Enabled = bExtTool1.Enabled = bExtTool2.Enabled = bExtTool3.Enabled = lFind.Enabled = cFind.Enabled = true;
                 cTv.CheckBoxes = false;
                 lHiddenItems = null;
                 ShowAllObjects(true);
@@ -887,6 +887,25 @@ namespace FIMTestConfigurator {
         //_______________________________________________________________________________________________________________________
         private void EditVariables() {
             using (frmVariables f = new frmVariables()) f.ShowDialog(this);
+            }
+        //_______________________________________________________________________________________________________________________
+        private void LoadExternalTools() {
+            string sTool;
+            sTool = ConfigurationHelper.GetSetting("ExtTool1");
+            if (!string.IsNullOrEmpty(sTool)) {
+                bExtTool1.Text = sTool.Split('|')[0];
+                bExtTool1.Visible = true;
+                }
+            sTool = ConfigurationHelper.GetSetting("ExtTool2");
+            if (!string.IsNullOrEmpty(sTool)) {
+                bExtTool2.Text = sTool.Split('|')[0];
+                bExtTool2.Visible = true;
+                }
+            sTool = ConfigurationHelper.GetSetting("ExtTool3");
+            if (!string.IsNullOrEmpty(sTool)) {
+                bExtTool3.Text = sTool.Split('|')[0];
+                bExtTool3.Visible = true;
+                }
             }
         }
     }
