@@ -1,4 +1,4 @@
-# FIMTestConfigurator - Automating FIM Tests
+# FIMTestConfigurator - Automating FIM/MIM Tests
 
 ## Audience
 This tool and its description is intended only for advanced [FIM/MIM](https://en.wikipedia.org/wiki/Forefront_Identity_Manager) users and developers. To understand how this works, you should be used to a specific terminology (whose explanation is outside the scope of this document).
