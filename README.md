@@ -32,6 +32,21 @@ Going straight to the point, a group contains several tests, and a batch contain
 As mentioned before, you need another tool, "FIMTestsRunner" in order to be able to execute the tests defined in the .db file.
 This tool is launched when you click on the "Run Tests" button in the upper toolbar.
 
+## Basic operations
+The menu bar contains the following commands:
+- **Open Test File**. This command open and existing DB Test file or create a new test db file with the path provided in the dialog window.
+- **Show/Hide View**. This command allow to hide items in the left tree view panel and unhide items previously hidden.
+- **check Intergrity**. This command validate configuration of each item defined in the DB test file. 
+- **Edit Variables**. This command show an additional dialog window used to define variables and values used during test execution.
+- **Close DB**. This command is used to close active DB file.
+- **Find**. This box is used to search by text in all visible items defined in active DB file. Use CTRL+F to activate the search text box and F3 to search occurences.
+- **Run Tests**. This command open FIMTestsRunner application.
+- <**Additional External Tools**>. The last three commands are configurable. They are defined in section **appSettings** of **FIMTestConfigurator.exe.Config** file. The **key** must be ExtTool1, ExtTool2 or ExtTool3. The **value** must contains three values joined by "|" character: <text to display>|<path to the application>|<parameters>. If **value** is empty the command button is not shown. If **parameters** section contains **#DB#** it is replaced by active DB file. Sample:
+    <add key="ExtTool1" value="FIM Sync Div|D:\Util\FIMSyncTool\Div\FIMSyncTest.exe|" />
+    <add key="ExtTool2" value="FIM Sync Nat|D:\Util\FIMSyncTool\Nat\FIMSyncTest.exe|" />
+    <add key="ExtTool3" value="FIM Config Files|D:\Util\Notepad++\notepad++.exe|-multiInst -nosession &quot;D:\FIMSynchronization\Synchronization Service\Extensions\config*.xml&quot;  &quot;D:\FIMSynchronization\Synchronization Service\Extensions\configurationsToLoad.txt&quot;" />
+
+
 ## Implementation
 It is written in C#, and contains two projects:
 - **FIMTestConfigurator**. A Windows Forms project type. It contains the  forms and controls required by the application.
