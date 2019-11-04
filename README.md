@@ -45,16 +45,16 @@ The menu bar contains the following commands:
 - **Close DB**. This command is used to close active DB file. 
 - **Find**. This box is used to search by text in all visible items defined in active DB file. Use CTRL+F to activate the search text box and F3 to search occurences.
 - **Run Tests**. This command open [FIMTestsRunner](https://github.com/sfalbacete/FIMTestsRunner) application.
-- <**Additional External Tools**>. The last three commands are configurable. They are defined in section **appSettings** of **FIMTestConfigurator.exe.Config** file. The **key** must be `ExtTool1`, `ExtTool2` or `ExtTool3`. The **value** must contains three values joined by "|" character: `<text to display>|<path to the application>|<parameters>`. If **value** is empty the command button is not shown. If **parameters** section contains **#DB#** it is replaced by active DB file. Sample:
+- <**Additional External Tools**>. The last three commands are configurable. They are defined in section **appSettings** of **FIMTestConfigurator.exe.Config** file. The **key** must be `ExtTool1`, `ExtTool2` or `ExtTool3`. The **value** must contains three values joined by "|" character: `<text to display>|<path to the application>|<parameters>`. If **value** is empty the command button is not shown. If **parameters** section contains **#DB#** it is replaced by active test DB file. Sample:
 ```
-    <add key="ExtTool1" value="FIM Sync Div|D:\Util\FIMSyncTool\Div\FIMSyncTest.exe|" />
-    <add key="ExtTool2" value="FIM Sync Nat|D:\Util\FIMSyncTool\Nat\FIMSyncTest.exe|" />
-    <add key="ExtTool3" value="FIM Config Files|D:\Util\Notepad++\notepad++.exe|-multiInst -nosession &quot;D:\FIMSynchronization\Synchronization Service\Extensions\config*.xml&quot;  &quot;D:\FIMSynchronization\Synchronization Service\Extensions\configurationsToLoad.txt&quot;" />
+    <add key="ExtTool1" value="FIM Sync|D:\Util\FIMSyncTool\FIMSyncTest.exe|" />
+    <add key="ExtTool2" value="SQLite DB Browser|D:\Util\SQLiteDBBrowser\SQLiteDBBrowser.exe|#DB#" />
+    <add key="ExtTool3" value="FIM Config Files|D:\Util\Notepad++\notepad++.exe|-multiInst -nosession &quot;D:\Synchronization Service\Extensions\config*.xml&quot;  &quot;D:\Synchronization Service\Extensions\config*.cfg&quot;" />
  ```
 
 
 ## Implementation
-It is written in C#, and contains two projects:
+It is written in C#, and contains the following projects:
 - **FIMTestConfigurator**. A Windows Forms project type. It contains the  forms and controls required by the application.
 - **FIMTestWpfConfigurator**. A WPF project type. It is an alternative implementation to the first one.
 - **FIMTestconfigLib**. A Class Library project type, being used by the preevisous projects.
@@ -62,4 +62,4 @@ It is written in C#, and contains two projects:
 ## External dependencies
 - **System.Data.SQLite Interop Library** 1.0.65.0. Used to read the defined tests stored in a .db file.
 
-Note: all dependency files are included in the releases so you can take the DLLs in order to be able to compile the project.
+*Note*: all dependency files are included in the releases so you can take the DLLs in order to be able to compile the project.
