@@ -40,8 +40,14 @@ namespace FIMTestConfigurator {
             // This code segment connects/creates the DB and creates a table in it called names
             IsNew = !File.Exists(sDBFile);
             if (IsNew) Console.WriteLine(".DB file does not exist => it will be created");
-            else File.Copy(sDBFile, Path.ChangeExtension(sDBFile, ".bak"), true);
-            oSqlCon = new SQLiteConnection("Data Source=" + cNomBD + ";Version=3;New=" + (File.Exists(sDBFile) ? "False" : "True") + ";Compress=True;");
+            else
+                try { File.Copy(sDBFile, Path.ChangeExtension(sDBFile, ".bak"), true); }
+                catch (Exception ex) {
+                    string msg = $"Error in creation of BAK copy of Database {sDBFile}. Message: {ex.Message}\r\n{ex.StackTrace}";
+                    Console.WriteLine(msg);
+                    _LastErrorMessages += (string.IsNullOrWhiteSpace(_LastErrorMessages) ? "" : "\r\n") + msg;
+                    }
+            oSqlCon = new SQLiteConnection($"Data Source={cNomBD};Version=3;New={(File.Exists(sDBFile) ? "False" : "True")};Compress=True;");
             oSqlCon.Open();
             }
         //_______________________________________________________________________________________________________________________
@@ -58,7 +64,7 @@ namespace FIMTestConfigurator {
                 return dataSet.Tables[0];
                 }
             catch (Exception ex) {
-                string msg = "Error in executeQuery. Query: " + (sSql ?? "N/A") + ". Message:" + ex.Message + "\r\n" + ex.StackTrace;
+                string msg = $"Error in executeQuery. Query: {(sSql ?? "N/A")}. Message:{ex.Message}\r\n{ex.StackTrace}";
                 Console.WriteLine(msg);
                 _LastErrorMessages += (string.IsNullOrWhiteSpace(_LastErrorMessages) ? "" : "\r\n") + msg;
                 return new DataTable();
@@ -73,7 +79,7 @@ namespace FIMTestConfigurator {
                 return oSqlCmd.ExecuteNonQuery();
                 }
             catch (Exception ex) {
-                string msg = "Error in ExecuteNonQuery. Query: " + (sSql ?? "N/A") + ". Message:" + ex.Message + "\r\n" + ex.StackTrace;
+                string msg = $"Error in ExecuteNonQuery. Query: {(sSql ?? "N/A")}. Message:{ex.Message}\r\n{ex.StackTrace}";
                 Console.WriteLine(msg);
                 _LastErrorMessages += (string.IsNullOrWhiteSpace(_LastErrorMessages)?"":"\r\n") + msg;
                 return -1;
@@ -88,7 +94,7 @@ namespace FIMTestConfigurator {
                 return oSqlCmd.ExecuteScalar();
                 }
             catch (Exception ex) {
-                string msg = "Error in ExecuteScalar. Query: " + (sSql ?? "N/A") + ". Message:" + ex.Message + "\r\n" + ex.StackTrace;
+                string msg = $"Error in ExecuteScalar. Query: {(sSql ?? "N/A")}. Message:{ex.Message}\r\n{ex.StackTrace}";
                 Console.WriteLine(msg);
                 _LastErrorMessages += (string.IsNullOrWhiteSpace(_LastErrorMessages) ? "" : "\r\n") + msg;
                 return null;
